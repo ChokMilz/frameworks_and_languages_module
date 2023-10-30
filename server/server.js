@@ -10,16 +10,10 @@ app.get('/', (req, res) => {
 
 let ITEMS=[
   {
-  
     "id": 0,
     "user_id": "user1234",
-    "keywords": [
-      "hammer",
-      "nails",
-      "tools"
-    ],
+    "keywords": ["hammer", "nails","tools"],
     "description": "A hammer and nails set",
-    "image": "https://placekitten.com/200/300",
     "lat": 51.2798438,
     "lon": 1.0830275,
     "date_from": "2023-10-23T13:31:01.434Z",
@@ -30,6 +24,17 @@ let ITEMS=[
 app.get('/items', (req, res) => {
   res.json(ITEMS)
   res.status(200).json("Message:","Successful GET requests")
+})
+
+app.get('/item/:id', (req, res) => {
+  for(let j of ITEMS)
+  {
+    if (j.id==req.params.id)
+    {
+      return res.status(200).json(j)
+    }
+  }
+  return res.status(404).json({message:"not found"})
 })
 
 app.post('/item', (req, res)  => {
@@ -51,6 +56,13 @@ app.post('/item', (req, res)  => {
     console.log("Successful POST Request")
   }
 })
+
+app.delete('/item/:id', (req, res) => {
+  console.log("delete in the future" + req.params.id)
+  ITEMS = ITEMS.filter((item) => item.id===req.params.id)
+  res.status(204).json()
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
