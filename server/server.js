@@ -49,7 +49,7 @@ app.post('/item', (req, res)  => {
 
     req.body.id= identity;
     req.body['date_from'] = currentDate;
-    req.body['id'] = identity;
+    //req.body['id'] = identity;
   
     ITEMS.push(req.body)
     res.status(201).json(req.body)
