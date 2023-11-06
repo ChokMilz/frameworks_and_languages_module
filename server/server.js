@@ -1,8 +1,10 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 const port = 8000
 
-app.use(express.json())
+app.use(express.json());
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send('Hello Duke Obi!')
@@ -21,9 +23,10 @@ let ITEMS=[
   }
 ]
 
+let id = 1;
+
 app.get('/items', (req, res) => {
-  res.json(ITEMS)
-  res.status(200).json("Message:","Successful GET requests")
+  res.status(200).json(ITEMS)
 })
 
 app.get('/item/:id', (req, res) => {
@@ -45,7 +48,7 @@ app.post('/item', (req, res)  => {
   else
   {
     const currentDate = new Date().toISOString();
-    const identity =  Math.random();
+    const identity =  id++;
 
     req.body.id= identity;
     req.body['date_from'] = currentDate;
@@ -58,9 +61,17 @@ app.post('/item', (req, res)  => {
 })
 
 app.delete('/item/:id', (req, res) => {
-  console.log("delete in the future" + req.params.id)
-  ITEMS = ITEMS.filter((item) => item.id===req.params.id)
+  let ID = req.params.id
+  console.log ("delete ITEMS")
+  console.log (ITEMS)
+  if(ITEMS[ID]){
+  //console.log("delete in the future" + req.params.id)
+  ITEMS = ITEMS.filter((item) => item.id!=req.params.id)
   res.status(204).json()
+}
+else{
+  res.status(404).json({message :"NO ID"});
+}
 })
 
 app.listen(port, () => {
