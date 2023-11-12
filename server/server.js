@@ -25,6 +25,29 @@ let ITEMS=[
 
 let id = 1;
 
+app.post('/item', (req, res)  => {
+  if(Object.keys(req.body).toString() != "user_id,keywords,description,lat,lon")
+  {
+    res.status(405).json({ error: "message: missing fields"});
+  }
+  else
+  {
+    const currentDate = new Date().toISOString();
+    const identity = id++;
+    //const identity = Math.floor(Math.random() * 1000);
+
+    req.body.id= identity;
+    req.body['date_from'] = currentDate;
+    req.body['date_to'] = currentDate;
+
+    //req.body['id'] = identity;
+  
+    ITEMS.push(req.body)
+    return res.status(201).json(req.body)
+    //console.log("Successful POST Request")
+  }
+})
+
 app.get('/items', (req, res) => {
   res.status(200).json(ITEMS)
 })
@@ -40,38 +63,19 @@ app.get('/item/:id', (req, res) => {
   return res.status(404).json({message:"not found"})
 })
 
-app.post('/item', (req, res)  => {
-  if(Object.keys(req.body).toString() != "user_id,keywords,description,lat,lon")
-  {
-    return res.status(405).json({"message": "missing fields"})
-  }
-  else
-  {
-    const currentDate = new Date().toISOString();
-    const identity =  id++;
-
-    req.body.id= identity;
-    req.body['date_from'] = currentDate;
-    //req.body['id'] = identity;
-  
-    ITEMS.push(req.body)
-    res.status(201).json(req.body)
-    console.log("Successful POST Request")
-  }
-})
 
 app.delete('/item/:id', (req, res) => {
   let ID = req.params.id
-  console.log ("delete ITEMS")
-  console.log (ITEMS)
-  if(ITEMS[ID]){
-  //console.log("delete in the future" + req.params.id)
-  ITEMS = ITEMS.filter((item) => item.id!=req.params.id)
-  res.status(204).json()
-}
-else{
-  res.status(404).json({message :"NO ID"});
-}
+  //console.log ("delete ITEMS")
+  //console.log (ITEMS)
+  if(ITEMS[ID]) {
+    //console.log("delete in the future" + req.params.id)
+    ITEMS = ITEMS.filter((item) => item.id!=req.params.id)
+    return res.status(204).json()
+  }
+  else {
+    return res.status(404).json({message :"NO ID"});
+  }
 })
 
 app.listen(port, () => {
