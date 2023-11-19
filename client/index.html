@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link id="favicon" rel="shortcut icon" type="image/png" href="data:image/png;base64,....==" />
+    <title>Boilerplate</title>
+  
+</head>
+<body>
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script>
+    <div id="app">
+        <h2>Create</h2>
+        <form @submit.prevent="createItem">
+            <input v-model="item.user_id" name="user_id" placeholder="user_id">
+            <input v-model="item.lat" name="lat" placeholder="lat">
+            <input v-model="item.lon" name="lon" placeholder="lon">
+            <input v-model="item.image" name="image" placeholder="image">
+            <input v-model="item.keywords" name="keywords" placeholder="keywords">
+            <textarea v-model="item.description" name="description" placeholder="description"></textarea>
+            <button data-action="create_item">Create Item</button>
+        </form>
+
+        <h2>Items</h2>
+        <ul>
+            <li><!-- Somehow templated for each item -->
+                <img :src="item.image">
+                <span data-field="id"> {{item.id}} </span>
+                <span data-field="lat"> {{item.lat}} </span>
+                <span data-field="user_id"> {{item.user_id}} </span>
+                <span data-field="description"> {{item.description}} </span>
+                <span data-field="keywords"> {{item.keyword}} </span>
+                <span data-field="lon"> {{item.lon}} </span>
+                <button data-action="delete" @click="deleteItem(item.id)">Delete</button>
+            </li>
+        </ul>
+    </div>
+
+    <script type="module">
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlAPI = (urlParams.get('api') || '/api/v1').replace(/\/$/, ''); 
+
+
+        import { createApp } from 'vue'
+        createApp(
+          {
+            data() {return {
+                message: 'Hello Vue!',
+                item: {user_id: '', keywords: '', description: '', image: '', lat: '', lon: ''},
+                //seperate keywords
+                list: [1,2,3],
+            }},
+
+            created() {
+                this.formClear()
+                this.getItems()
+            },
+            methods: {
+                formClear(){
+                    console.log("Cleared the Form")
+                    this.item.image = ''
+                    this.item.user_id = ''
+                    this.item.description = ''
+                    this.item.keywords = ''
+                    this.item.lat = ''
+                    this.item.lon = ''
+            },
+
+            createItem() {
+        //console.log(this.item)
+                fetch(`${urlAPI}/item`,{
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(this.item),
+                    })
+                    .then(response => response.json())
+                    .then(json => console.log('POSTED', json))
+                    .then(() => this.formClear())
+                    .then(() => this.getItems())
+                    .catch(err => console.error(err));
+            },
+
+            getItems() {
+                fetch(`${urlAPI}/item`, {
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(json => {
+                console.log("GET", json)
+                this.list = [...json] 
+            })
+            .catch(err => console.error(err))
+            },
+
+            deleteItem(id) {
+                fetch(`${urlAPI}/item/${id}`, {
+                    method: 'DELETE',        
+                })
+                .then(json => console.log('deleteItem()', json))
+                .then(() => this.getItems())
+                .catch(err => console.error(err));
+            },
+        }}).mount('#app')
+    </script>
+</body>
+</html>
