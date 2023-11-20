@@ -32,10 +32,10 @@ Server Framework Features
 
 (Technical description of the feature - 40ish words)
 (A code block snippet example demonstrating the feature)
-"app.post('/item', (req, res) => {
-    const requiredFields = ['user_id', 'keywords', 'description', 'lat', 'lon'];"
-
- Check if all required fields are present in the request body.
+```javascript
+app.post('/item', (req, res) => {
+    const requiredFields = ['user_id', 'keywords', 'description', 'lat', 'lon'];```
+ it Checks if all required fields are present in the request body.
 
 (Explain the problem-this-is-solving/why/benefits/problems - 40ish words)
 (Provide reference urls to your sources of information about the feature - required)
