@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <link id="favicon" rel="shortcut icon" type="image/png" href="data:image/png;base64,....==" />
-    <title>Boilerplate</title>
+    <title>Client</title>
+
+    <nav>Freecycle</nav>
   
 </head>
 <body>
@@ -28,7 +30,7 @@
 
         <h2>Items</h2>
         <ul>
-            <li><!-- Somehow templated for each item -->
+            <li v-for="item of list">
                 <img :src="item.image">
                 <span data-field="id"> {{item.id}} </span>
                 <span data-field="lat"> {{item.lat}} </span>
@@ -43,8 +45,7 @@
 
     <script type="module">
         const urlParams = new URLSearchParams(window.location.search);
-        const urlAPI = (urlParams.get('api') || '/api/v1').replace(/\/$/, ''); 
-
+        const urlAPI = (urlParams.get('api') || '/api/v1').replace(/\/$/, '');
 
         import { createApp } from 'vue'
         createApp(
@@ -53,14 +54,17 @@
                 message: 'Hello Vue!',
                 item: {user_id: '', keywords: '', description: '', image: '', lat: '', lon: ''},
                 //seperate keywords
-                list: [1,2,3],
-            }},
+                list: [1,2,3,4,5,6],
+                }},
 
-            created() {
-                this.formClear()
-                this.getItems()
-            },
-            methods: {
+                created() 
+                {
+                    this.formClear()
+                    this.getItems()
+                },
+
+            methods: 
+            {
                 formClear(){
                     console.log("Cleared the Form")
                     this.item.image = ''
@@ -71,41 +75,46 @@
                     this.item.lon = ''
             },
 
-            createItem() {
-        //console.log(this.item)
-                fetch(`${urlAPI}/item`,{
+            createItem() 
+            {
+                fetch(`${urlAPI}/item`, 
+                {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(this.item),
-                    })
-                    .then(response => response.json())
-                    .then(json => console.log('POSTED', json))
-                    .then(() => this.formClear())
-                    .then(() => this.getItems())
-                    .catch(err => console.error(err));
-            },
-
-            getItems() {
-                fetch(`${urlAPI}/item`, {
-                method: 'GET',
-            })
-            .then(response => response.json())
-            .then(json => {
-                console.log("GET", json)
-                this.list = [...json] 
-            })
-            .catch(err => console.error(err))
-            },
-
-            deleteItem(id) {
-                fetch(`${urlAPI}/item/${id}`, {
-                    method: 'DELETE',        
                 })
-                .then(json => console.log('deleteItem()', json))
+                .then(response => response.json())
+                .then(json => console.log('POSTED WOOOOO!!!!', json))
+                .then(() => this.formClear())
                 .then(() => this.getItems())
                 .catch(err => console.error(err));
             },
-        }}).mount('#app')
+
+            getItems() {
+                fetch(`${urlAPI}/items`, {
+                    method: 'GET',
+                })
+
+                .then(response => response.json())
+                .then(json => {
+                    console.log("GOT STUFF WOOOOO!!!!", json)
+                    this.list = [...json]  // save the json we got back into the variable `items`
+                })
+                .catch(err => console.error(err))
+                },
+
+                deleteItem(id) 
+                {
+                    fetch(`${urlAPI}/item/${id}`, {
+                        method: 'DELETE',
+                    })
+                    //.then(json => console.log('item deleted', json))
+                    .then(json => console.log('DELETED WOOOOO!!!!', json))
+                    .then(() => this.getItems())
+                    .catch(err => console.error(err));
+                },
+            }
+        }).mount('#app')
     </script>
 </body>
 </html>
