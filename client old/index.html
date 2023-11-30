@@ -45,6 +45,7 @@
 
     <script type="module">
         const urlParams = new URLSearchParams(window.location.search);
+        //the server changes URL making it dynamic
         const urlAPI = (urlParams.get('api') || '/api/v1').replace(/\/$/, '');
 
         import { createApp } from 'vue'
