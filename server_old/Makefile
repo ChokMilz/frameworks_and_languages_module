@@ -1,0 +1,10 @@
+DOCKER_IMAGE:=server
+
+run_local:
+	node server.js
+
+build:
+	docker build --tag ${DOCKER_IMAGE} .
+
+run:
+	docker run --rm -it --publish 8000:8000 ${DOCKER_IMAGE}
