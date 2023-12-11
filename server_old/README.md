@@ -7,7 +7,7 @@ Before you begin, ensure you have the following installed:
 •	Node.js and npm (Node Package Manager)
 # Installation
 1.	Clone the repository:
-    On Bash: git clone <repository-url> 
+    On Bash: git clone <https://github.com/ChokMilz/frameworks_and_languages_module> 
 1.	Navigate to the project directory:
     On Bash: cd server old 
 2.	Install dependencies:

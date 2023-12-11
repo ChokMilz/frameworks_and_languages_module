@@ -31,20 +31,6 @@ let ITEMS= [
   }
 ]
  
-//let id = 1;
-
-// app.get('item/:id', (req, res)=>{
-//   const item = ITEMS.find(i =>i.id ===req.params.id);
-//   if(item){
-//     return res.status(200).json(item)
-//   }else{
-//     return res.status(404).json({message: 'Item not found'})
-//   }
-
-// });
-
- 
-
 app.post('/item', (req, res) => {
     const requiredFields = ['user_id', 'keywords', 'description', 'lat', 'lon'];
     // this are required field
@@ -130,7 +116,7 @@ app.get('/items', (req, res) => {
   });
 
 // app.delete('/item/:id', (req, res) => {
-//   //Talked with Janidu
+//   
 //   const id = parseFloat(req.params.id);
 //   const item = ITEMS.findIndex(item => item.id === id)
 //   if (item === -1)

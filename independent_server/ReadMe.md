@@ -6,7 +6,7 @@ This is a simple Falcon server implementation for managing items in a system. Th
 Before you begin, ensure you have the following installed:
 •	Python (3.6 or higher)
 # Installation
-1.	Clone the repository: On Bash: git clone <repository-url> 
+1.	Clone the repository: On Bash: git clone <https://github.com/ChokMilz/frameworks_and_languages_module> 
 2.	Navigate to the project directory: On Bash: cd independent_server 
 3.	Install dependencies: On Bash: pip install falcon falcon-cors. pip install falcon
 4.	Run the server: On Bash: python server.py 
