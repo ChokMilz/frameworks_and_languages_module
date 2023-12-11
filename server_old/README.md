@@ -43,3 +43,5 @@ Before you begin, ensure you have the following installed:
 •	Request Parameter:
 •	id (number): ID of the item.
 •	Response: No content (204 status code).
+# license 
+This project is licensed under the MIT License.

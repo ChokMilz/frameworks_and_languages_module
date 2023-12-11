@@ -22,3 +22,5 @@ This is a simple web client for interacting with a Freecycle API. The client all
 # Deleting Items
 •	To delete an item, click the "Delete" button next to the
 respective item.
+# license 
+This project is licensed under the MIT License.

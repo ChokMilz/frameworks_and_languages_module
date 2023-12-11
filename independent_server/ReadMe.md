@@ -38,3 +38,5 @@ The server will be accessible at http://localhost:8000.
 •	Request Parameter:
 •	id (number): ID of the item.
 •	Response: No content (204 status code).
+# license 
+This project is licensed under the MIT License.
