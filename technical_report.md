@@ -73,9 +73,11 @@ class PostItem:
             Items.append(newitems)
 ```
 This feature streamlines the development process, enabling concise and readable code for managing API endpoints. The problem it solves lies in providing a straightforward mechanism for developers to handle HTTP interactions, leading to cleaner code and enhanced maintainability. The benefits include improved developer productivity, reduced boilerplate code, and better readability of the API structure.
+
 https://falcon.readthedocs.io/en/stable/api/request_and_response.html
-https://www.geeksforgeeks.org/python-falcon-request-response/
-https://www.tutorialspoint.com/python_falcon/python_falcon_request_and_response.htm
+https://www.geeksforgeeks.org/python-falcon-request-response/ \
+https://www.tutorialspoint.com/python_falcon/
+python_falcon_request_and_response.htm
 
 
 ### Middleware Support
@@ -94,8 +96,8 @@ app = falcon.App(middleware=[cors.middleware])
 
 
 The problem this solves revolves around the need for additional processing steps during the request-response cycle. The benefits include the ability to modularize and reuse middleware components, promoting code reusability, and simplifying the integration of common functionalities across different APIs.
-https://falcon.readthedocs.io/en/stable/api/middleware.html
-https://lynn-kwong.medium.com/build-apis-with-falcon-in-python-all-essentials-you-need-9e2c2a5e1759
+https://falcon.readthedocs.io/en/stable/api/middleware.html \
+https://lynn-kwong.medium.com/build-apis-with-falcon-in-python-all-essentials-you-need-9e2c2a5e1759 \
 https://www.tutorialspoint.com/python_falcon/python_falcon_middleware.html
 
 ### Resource Class Composition
@@ -116,7 +118,8 @@ class StaticResourse:
 app.add_route('/', StaticResourse())
 ```
 Falcon's resource class composition, which provides modular and reusable resource classes, is essential for developing large-scale APIs. In addition to improving organisation, it makes maintenance easier and enables careful concern separation. This methodology enables structured, scalable API designs that easily conform to industry best practices and provide a strong basis for web development.
-https://falcon.readthedocs.io/en/stable/api/routing.html
+
+https://falcon.readthedocs.io/en/stable/api/routing.html \
 https://www.geeksforgeeks.org/python-falcon-resource-class/
 
 Server Language Features
@@ -138,7 +141,8 @@ asyncio.run(fetch_data("https://example.com"))
 ```
 
 This feature addresses the challenge of handling multiple concurrent requests efficiently. Asynchronous programming mitigates the bottlenecks associated with synchronous operations, enabling servers to handle a higher volume of requests concurrently. The benefits include improved server responsiveness, reduced latency, and enhanced scalability, making it ideal for web applications with varying workloads.
-https://www.geeksforgeeks.org/asyncio-in-python/
+
+https://www.geeksforgeeks.org/asyncio-in-python/ \
 https://realpython.com/async-io-python/
 
 ### WSGI (Web Server Gateway Interface) Compatibility
@@ -153,7 +157,8 @@ def application(environ, start_response):
    return [b'Hello, WSGI!']
    ```
 This feature addresses the challenge of interoperability between Python web applications and web servers. WSGI compatibility ensures that Python applications can seamlessly run on different servers, promoting flexibility and ease of deployment. The benefits include increased portability, simplified deployment processes, and the ability to choose from a variety of web servers based on project requirements.
-https://www.toptal.com/python/pythons-wsgi-server-application-interface
+
+https://www.toptal.com/python/pythons-wsgi-server-application-interface \
 https://peps.python.org/pep-0333/
 
 Client Framework Features
@@ -189,7 +194,8 @@ template>
 
 #### Problem Solving and Benefits
 Enhancing application reactivity, Vue directives streamline the integration of dynamic data into the user interface. Declarative expressions facilitate easier cooperation and improve code readability by lowering the number of defects. The user experience is enhanced by real-time updates, which dynamically refresh the view to reflect changes in the underlying data.
-https://www.w3schools.com/vue/vue_directives.php#:~:text=Vue%20directives%20are%20special%20HTML,compared%20to%20traditional%20JavaScript%20methods.https://www.scholarhat.com/tutorial/vue/directives-in-vuejs
+https://www.w3schools.com/vue/vue_directives.php#:~:text=Vue%20directives%20are%20special%20HTML,compared%20to%20traditional%20JavaScript%20methods \
+https://www.scholarhat.com/tutorial/vue/directives-in-vuejs
 
 ### Vue Components - Encapsulated and Reusable UI Blocks
 Vue.js introduces components, which are reusable and self-contained units of code that encapsulate a specific piece of functionality, or UI. Components enhance code organization, maintainability, and reusability by breaking down the application into smaller, manageable pieces.
@@ -231,7 +237,8 @@ Vue.js introduces components, which are reusable and self-contained units of cod
 
 #### Problem Solving and Benefits
 Vue components improve code scalability and maintainability by breaking down features into separate modules, which makes modular development easier. Encapsulating logic and styles reduces naming conflicts and enhances code readability. Because components may be reused, integration across the application can be done seamlessly, which enhances consistency in both design and user experience.
-https://www.w3schools.com/vue/vue_components.php
+
+https://www.w3schools.com/vue/vue_components.php \
 https://www.educative.io/answers/what-are-vue-components
 
 
@@ -267,7 +274,7 @@ new Vue({
 #### Problem Solving and Benefits
 Vue Router adeptly manages Single Page Application (SPA) navigation, offering a seamless user experience without full page reloads. It improves perceived performance by drawing components and changing the URL dynamically. Vue Router offers a complete solution for intricate SPA navigation scenarios with support for navigation guards, route parameters, and nested routes.
 
-https://router.vuejs.org/guide/
+https://router.vuejs.org/guide/ \
 https://www.codingame.com/playgrounds/3808/how-to-use-vue-router
 
 Client Language Features
@@ -296,7 +303,8 @@ async function fetchData(url) {
 
 #### Problem Solving and Benefits
 By addressing non-blocking tasks like network queries, asynchronous JavaScript—especially with Async/Await—avoids UI freezes. Before Async/Await, callbacks and promises might lead to callback hell and poor code readability. Asynchronous code is made easier to read and maintain with Async/Await, which also greatly improves user experience while requesting data or doing other asynchronous operations.
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function \
 https://javascript.info/async-await
 
 ### Modular JavaScript (ES6 Modules)
@@ -317,7 +325,8 @@ console.log(greeting);
 ```
 #### Problem Solving and Benefits
 Code organisation, reusability, and maintainability issues are resolved by modular JavaScript, particularly when combined with ES6 Modules. Prior to ES6, name conflicts were triggered by patterns like IIFE or global variables. ES6 modules facilitate the autonomous development of application components for improved teamwork by providing clarity, lowering naming hazards, and improving code reuse.
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules \
 https://javascript.info/modules-intro
 
 Conclusions
